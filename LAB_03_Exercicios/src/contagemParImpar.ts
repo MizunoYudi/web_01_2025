@@ -9,15 +9,4 @@ for(const n of numeros){
         impar.push(n);
 }
 
-console.log(par);
-
-let maior = 0;
-for(let i = 0; i < par.length; i++){
-    if(i > maior){
-        par[par.indexOf(par[i])] = par[i];
-        par.unshift(par[i]);
-        par.pop();
-    }
-}
-
-console.log(par);
+console.log(par, impar);
