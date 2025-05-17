@@ -19,10 +19,15 @@ function listarJogadores(req, res) {
 function filtrarPorId(req, res) {
     try {
         let id = req.params.id;
-        res.status(200).json({ ID: id });
+        for (let i = 0; i < jogadores.length; i++) {
+            if (jogadores[i].id == parseInt(id)) {
+                res.status(200).json(jogadores[i]);
+            }
+        }
+        res.status(404).send("Jogador não encontrado");
     }
     catch (e) {
-        res.status(400).json({ Message: " Necessário informar o ID" });
+        res.status(400).send({ Message: " Necessário informar o ID" });
     }
 }
 function novoJogador(req, res) {

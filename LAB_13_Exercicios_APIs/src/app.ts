@@ -11,24 +11,17 @@ function helloWorld(req: Request, res: Response): void {
     res.status(200).send('Teste');
 }
 
-function listarJogadores(req: Request, res: Response): void {
-    let texto: string = '';
-
-
-    res.status(200).send(texto);
-}
-
 function filtrarPorId(req: Request, res: Response): void {
     try {
         let id = req.params.id
         for(let i = 0; i < jogadores.length; i++){
-            if(jogadores[i].id === 1){
-                
+            if(jogadores[i].id == parseInt(id)){ 
+                res.status(200).json(jogadores[i])
             }
         }
-        res.status(200).json({ID: id})
+        res.status(404).send("Jogador não encontrado");
     } catch (e: unknown) {
-        res.status(400).json({Message:" Necessário informar o ID"})
+        res.status(400).send({Message:" Necessário informar o ID"})
     }
 }
 
