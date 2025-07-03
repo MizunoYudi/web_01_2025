@@ -1,5 +1,5 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Product } from "../model/Product";
+import { ProductDto } from "../model/ProductDto";
 
 export class ProductRepository{
     private static instance: ProductRepository;
@@ -29,12 +29,12 @@ export class ProductRepository{
         }
     }
 
-    async insertProduct(name: string, price: number): Promise<Product>{
+    async insertProduct(name: string, price: number): Promise<ProductDto>{
             const resultado = await executarComandoSQL(
                 "INSERT INTO vendas.Product (name, price) VALUES (?, ?)",
                 [name, price]
             );
-            const newProduct = new Product(resultado.insertId, name, price)
+            const newProduct = new ProductDto(resultado.insertId, name, price)
             console.log('Produto inserido com sucesso:', newProduct);
             return newProduct
     }

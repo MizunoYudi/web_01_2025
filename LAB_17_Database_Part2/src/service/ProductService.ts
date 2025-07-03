@@ -1,10 +1,10 @@
-import { Product } from "../model/Product";
+import { ProductDto } from "../model/ProductDto";
 import { ProductRepository } from "../repository/ProductRepository";
 
 export class ProductService{
     private productRepository = ProductRepository.getInstance()
 
-    async createProduct(data : any):Promise<Product>{
+    async createProduct(data : any):Promise<ProductDto>{
         if(!data.name || !data.price){
             throw new Error('Favor informar os campos obrigatórios')
         }
