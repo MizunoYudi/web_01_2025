@@ -46,7 +46,7 @@ class ProductRepository {
     }
     searchProduct(id) {
         try {
-            const resultado = (0, mysql_1.executarComandoSQL)("SELECT * FROM vendas.Product id = ?", [id], this.imprimeResult);
+            const resultado = (0, mysql_1.executarComandoSQL)("SELECT * FROM vendas.Product where id = ?", [id], this.imprimeResult);
             console.log('Produto encontrado:', resultado);
         }
         catch (err) {

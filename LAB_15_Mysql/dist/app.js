@@ -10,8 +10,9 @@ const PORT = process.env.PORT ?? 3000; // Verifica se ja existe alguma porta já
 app.use(express_1.default.json()); // Escolhe o tipo de arquivo pelo qual será feita a comunicação json ou xml
 const repository = new ProductRepository_1.ProductRepository();
 repository.createTable();
-//repository.insertProduct("camiseta", 20.99);
-//repository.deleteProduct(1);
-//repository.updateProduct(2, "arroz", 13.50);
+repository.insertProduct("camiseta", 20.99);
+repository.deleteProduct(1);
+repository.insertProduct("camiseta", 20.99);
+repository.updateProduct(2, "arroz", 13.50);
 repository.searchProduct(2);
 app.listen(PORT, () => console.log(`API em execução no URL: http://localhost:${PORT}`));

@@ -55,7 +55,7 @@ export class ProductRepository {
     searchProduct(id: number){
         try {
             const resultado = executarComandoSQL(
-                "SELECT * FROM vendas.Product id = ?",
+                "SELECT * FROM vendas.Product where id = ?",
                 [id], this.imprimeResult
             );
             console.log('Produto encontrado:', resultado);
