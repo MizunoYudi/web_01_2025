@@ -55,7 +55,7 @@ export class ProductRepository {
     async searchProduct(id_product: number): Promise<Product>{
         const query = `SELECT * FROM vendas.Product where id = ?`;
         const resultado = await executarComandoSQL(query, [id_product]);
-        if(resultado == undefined){
+        if(resultado.lenght == undefined){
             console.log('Produto não encontrado');
             throw new Error("Produto não encontrado")
         } else {
