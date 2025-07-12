@@ -16,11 +16,11 @@ class ProductService {
         }
         return this.productRepository.searchProduct(id);
     }
-    updateProduct(data) {
-        if (!data.id) {
+    updateProduct(id, data) {
+        if (!id) {
             throw new Error('Informe o id para atualizar o produto');
         }
-        return this.productRepository.updateProduct(data.id, data.name, data.price);
+        return this.productRepository.updateProduct(id, data.name, data.price);
     }
     removeProduct(id) {
         if (!id) {

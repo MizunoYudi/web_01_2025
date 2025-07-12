@@ -18,11 +18,11 @@ export class ProductService {
         return this.productRepository.searchProduct(id);
     }
 
-    updateProduct(data: any): Promise<Product>{
-        if(!data.id){
+    updateProduct(id: number, data: any): Promise<Product>{
+        if(!id){
             throw new Error('Informe o id para atualizar o produto');
         }
-        return this.productRepository.updateProduct(data.id, data.name, data.price)
+        return this.productRepository.updateProduct(id, data.name, data.price)
     }
 
     removeProduct(id: number){

@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { ProductService } from "../service/ProductService";
 
-const productService = new ProductService();
 
 export class ProductController {
+    private productService = new ProductService();
 
     async cadastrarProduto(req: Request, res: Response){
         try{
-            const product = await productService.createProduct(req.body);
+            const product = await this.productService.createProduct(req.body);
             res.status(201).json({
                 message: 'Produto cadastrado com sucesso!',
                 produto: product
@@ -19,7 +19,7 @@ export class ProductController {
 
     async removerProduto(req: Request, res: Response){
         try{
-            productService.removeProduct(parseInt(req.params.id));
+            this.productService.removeProduct(parseInt(req.params.id));
             res.status(200).json({
                 message: 'Produto Removido'
             });
@@ -30,7 +30,7 @@ export class ProductController {
 
     async atualizarProduto(req: Request, res: Response){
         try{
-            const product = await productService.updateProduct(req.body);
+            const product = await this.productService.updateProduct(parseInt(req.params.id), req.body);
             res.status(201).json({
                 message: 'Produto atualizado com sucesso!',
                 produto: product
@@ -42,7 +42,7 @@ export class ProductController {
 
     async procurarProduto(req: Request, res: Response){
         try{
-            const product = await productService.searchProduct(parseInt(req.params.id));
+            const product = await this.productService.searchProduct(parseInt(req.params.id));
             res.status(201).json({
                 message: 'Produto encontrado!',
                 produto: product

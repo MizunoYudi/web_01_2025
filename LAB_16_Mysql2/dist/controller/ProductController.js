@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const ProductService_1 = require("../service/ProductService");
-const productService = new ProductService_1.ProductService();
 class ProductController {
+    productService = new ProductService_1.ProductService();
     async cadastrarProduto(req, res) {
         try {
-            const product = await productService.createProduct(req.body);
+            const product = await this.productService.createProduct(req.body);
             res.status(201).json({
                 message: 'Produto cadastrado com sucesso!',
                 produto: product
@@ -18,7 +18,7 @@ class ProductController {
     }
     async removerProduto(req, res) {
         try {
-            productService.removeProduct(parseInt(req.params.id));
+            this.productService.removeProduct(parseInt(req.params.id));
             res.status(200).json({
                 message: 'Produto Removido'
             });
@@ -29,7 +29,7 @@ class ProductController {
     }
     async atualizarProduto(req, res) {
         try {
-            const product = await productService.updateProduct(req.body);
+            const product = await this.productService.updateProduct(parseInt(req.params.id), req.body);
             res.status(201).json({
                 message: 'Produto atualizado com sucesso!',
                 produto: product
@@ -41,7 +41,7 @@ class ProductController {
     }
     async procurarProduto(req, res) {
         try {
-            const product = await productService.searchProduct(parseInt(req.params.id));
+            const product = await this.productService.searchProduct(parseInt(req.params.id));
             res.status(201).json({
                 message: 'Produto encontrado!',
                 produto: product

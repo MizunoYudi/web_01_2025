@@ -50,9 +50,15 @@ class ProductRepository {
     async searchProduct(id_product) {
         const query = `SELECT * FROM vendas.Product where id = ?`;
         const resultado = await (0, mysql_1.executarComandoSQL)(query, [id_product]);
-        console.log('Produto encontrado:', resultado);
-        const { id, name, price } = resultado[0];
-        return new Product_1.Product(id, name, price);
+        if (resultado == undefined) {
+            console.log('Produto não encontrado');
+            throw new Error("Produto não encontrado");
+        }
+        else {
+            const { id, name, price } = resultado[0];
+            console.log('Produto encontrado:', resultado);
+            return new Product_1.Product(id, name, price);
+        }
     }
 }
 exports.ProductRepository = ProductRepository;

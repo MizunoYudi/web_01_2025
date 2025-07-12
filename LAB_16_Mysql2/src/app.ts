@@ -1,5 +1,4 @@
-import express, { Request, Response } from "express"
-import { ProductRepository } from "./repository/ProductRepository"
+import express from "express"
 import { ProductController } from "./controller/ProductController"
 
 const app = express()
@@ -8,10 +7,10 @@ app.use(express.json()) // Escolhe o tipo de arquivo pelo qual será feita a com
 
 const productController = new ProductController();
 
-app.post('/teste/produto', productController.cadastrarProduto);
-app.get('/teste/produto/:id', productController.procurarProduto);
-app.delete('/teste/produto/:id', productController.removerProduto);
-app.put('/teste/produto/:id', productController.atualizarProduto);
+app.post('/teste/produto', productController.cadastrarProduto.bind(productController));
+app.get('/teste/produto/:id', productController.procurarProduto.bind(productController));
+app.delete('/teste/produto/:id', productController.removerProduto.bind(productController));
+app.put('/teste/produto/:id', productController.atualizarProduto.bind(productController));
 
 app.listen(PORT, () => console.log(`API em execução no URL: http://localhost:${PORT}`));
 
